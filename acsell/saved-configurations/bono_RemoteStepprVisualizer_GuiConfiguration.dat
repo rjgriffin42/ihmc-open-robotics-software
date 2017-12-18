@@ -1,9 +1,21 @@
 <GraphGroup>
 	<Cols>1</Cols>
 	<Graph>
-		<Variables>root.remotemain.DRCEstimatorThread.estimatorTime</Variables>
+		<Variables>root.remotemain.DRCEstimatorThread.actualEstimatorDT</Variables>
 		<GraphConfiguration>
 			<Name>config1</Name>
+			<ScalingMethod>1</ScalingMethod>
+			<PlotType>100</PlotType>
+			<ShowBaseLines>true</ShowBaseLines>
+			<BaseLines>0.0,</BaseLines>
+			<MaxScaling>1.0</MaxScaling>
+			<MinScaling>0.0</MinScaling>
+		</GraphConfig>
+	</Graph>
+	<Graph>
+		<Variables></Variables>
+		<GraphConfiguration>
+			<Name>config2</Name>
 			<ScalingMethod>1</ScalingMethod>
 			<PlotType>100</PlotType>
 			<ShowBaseLines>true</ShowBaseLines>
@@ -16,9 +28,9 @@
 <Entry Boxes Tab Pane>
 <EntryBoxTab>
 <Title>
-Tab0
+Tab
 </Title>
-<Entry Boxes>requestedHighLevelState</Entry Boxes>
+<Entry Boxes>enableOutput,startStandprep,requestedHighLevelControllerName,controlRatio</Entry Boxes>
 </EntryBoxTab>
 </Entry Boxes Tab Pane>
 
@@ -32,14 +44,14 @@ Tab0
 
 <Extra Panels>
 <Main Viewport>
-Plotter,
+Dashboard,
 </Main Viewport></Extra Panels>
 
 <Current View>Normal View</Current View>
  <Canvas 1> 
  <Camera X>0.0</Camera X>
- <Camera Y>-2.667367787313481</Camera Y>
- <Camera Z>0.7778245191542319</Camera Z>
+ <Camera Y>-6.0</Camera Y>
+ <Camera Z>1.0</Camera Z>
  <Dolly data> 
  <Position X>2.0</Position X>
  <Position Y>12.0</Position Y>
