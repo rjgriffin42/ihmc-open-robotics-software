@@ -20,7 +20,7 @@ import us.ihmc.tools.MemoryTools;
 
 import java.io.IOException;
 
-public abstract class QuadrupedPlanToWaypointTest implements QuadrupedMultiRobotTestInterface
+public abstract class QuadrupedAStarFootstepSimulationPlanToWaypointTest implements QuadrupedMultiRobotTestInterface
 {
    private GoalOrientedTestConductor conductor;
    private QuadrupedForceTestYoVariables variables;
@@ -85,14 +85,14 @@ public abstract class QuadrupedPlanToWaypointTest implements QuadrupedMultiRobot
 
       planningRequestPacket.getGoalPositionInWorld().set(1.5, 0.5, 0.0);
       planningRequestPacket.getGoalOrientationInWorld().setToYawQuaternion(-Math.PI * 0.25);
-      planningRequestPacket.setRequestedFootstepPlannerType(FootstepPlannerType.SIMPLE_PATH_TURN_WALK_TURN.toByte());
+      planningRequestPacket.setRequestedFootstepPlannerType(FootstepPlannerType.A_STAR.toByte());
 
       stepTeleopManager.publishPlanningRequest(planningRequestPacket);
 
       conductor.addWaypointGoal(YoVariableTestGoal.doubleWithinEpsilon(variables.getRobotBodyX(), 1.5, 0.05));
       conductor.addWaypointGoal(YoVariableTestGoal.doubleWithinEpsilon(variables.getRobotBodyY(), 0.5, 0.05));
       conductor.addWaypointGoal(YoVariableTestGoal.doubleWithinEpsilon(variables.getRobotBodyYaw(), -Math.PI * 0.25, 0.25));
-      conductor.addDurationGoal(variables.getYoTime(), 10.0);
+      conductor.addDurationGoal(variables.getYoTime(), 20.0);
       conductor.simulate();
    }
 
