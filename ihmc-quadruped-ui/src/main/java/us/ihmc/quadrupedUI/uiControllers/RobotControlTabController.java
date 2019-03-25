@@ -7,12 +7,13 @@ import javafx.scene.control.TextField;
 import us.ihmc.humanoidRobotics.communication.packets.dataobjects.HighLevelControllerName;
 import us.ihmc.javaFXToolkit.messager.JavaFXMessager;
 import us.ihmc.messager.TopicListener;
+import us.ihmc.quadrupedBasics.QuadrupedSteppingStateEnum;
 import us.ihmc.quadrupedRobotics.controller.QuadrupedControllerManager;
 import us.ihmc.quadrupedUI.QuadrupedUIMessagerAPI;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class MainTabController
+public class RobotControlTabController
 {
    @FXML
    private TextField currentStateViewer;
@@ -22,6 +23,9 @@ public class MainTabController
 
    @FXML
    private Button standUpButton;
+
+   @FXML
+   private Button standButton;
 
    @FXML
    private CheckBox enablePoseTeleopControl;
@@ -43,7 +47,7 @@ public class MainTabController
    public void attachMessager(JavaFXMessager messager)
    {
       this.messager = messager;
-      currentControllerState = messager.createInput(QuadrupedUIMessagerAPI.CurrentControllerNameTopic, HighLevelControllerName.WALKING);
+      currentControllerState = messager.createInput(QuadrupedUIMessagerAPI.CurrentControllerNameTopic, null);
 
       messager.registerTopicListener(QuadrupedUIMessagerAPI.EnableBodyTeleopTopic, this::validateBodyTopic);
       messager.registerTopicListener(QuadrupedUIMessagerAPI.EnableStepTeleopTopic, this::validateWalkingTopic);
@@ -54,7 +58,7 @@ public class MainTabController
       if (request)
       {
          messager.submitMessage(QuadrupedUIMessagerAPI.EnableStepTeleopTopic, false);
-         if (currentControllerState.get() != HighLevelControllerName.WALKING)
+         if (currentControllerState.get() != null && currentControllerState.get() != HighLevelControllerName.WALKING)
             messager.submitMessage(QuadrupedUIMessagerAPI.EnableBodyTeleopTopic, false);
       }
    }
@@ -64,8 +68,12 @@ public class MainTabController
       if (request)
       {
          messager.submitMessage(QuadrupedUIMessagerAPI.EnableBodyTeleopTopic, false);
-         if (currentControllerState.get() != HighLevelControllerName.WALKING)
+         if (currentControllerState.get() != null && currentControllerState.get() != HighLevelControllerName.WALKING)
             messager.submitMessage(QuadrupedUIMessagerAPI.EnableStepTeleopTopic, false);
+      }
+      else
+      {
+         requestStanding();
       }
    }
 
@@ -81,6 +89,22 @@ public class MainTabController
    {
       messager.submitMessage(QuadrupedUIMessagerAPI.DesiredControllerNameTopic, HighLevelControllerName.STAND_PREP_STATE);
    }
+
+   public void requestStopWalking()
+   {
+      messager.submitMessage(QuadrupedUIMessagerAPI.FootstepPlanTopic, null);
+      requestStanding();
+   }
+
+   public void requestStanding()
+   {
+      messager.submitMessage(QuadrupedUIMessagerAPI.DesiredSteppingStateNameTopic, QuadrupedSteppingStateEnum.STAND);
+   }
+
+//   public void requestAbortWalking()
+//   {
+//      messager.submitMessage(QuadrupedUIMessagerAPI.DesiredControllerNameTopic, HighLevelControllerName.STAND_PREP_STATE);
+//   }
 
    public void bindControls()
    {
