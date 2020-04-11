@@ -19,7 +19,7 @@ import us.ihmc.messager.Messager;
 import us.ihmc.messager.MessagerAPIFactory.Topic;
 import us.ihmc.ros2.Ros2Node;
 
-public class JavaFXROS2VideoView extends ImageView
+public class QuadrupedJavaFXROS2VideoView extends ImageView
 {
    private final ExecutorService executorService = Executors.newSingleThreadExecutor(ThreadTools.getNamedThreadFactory(getClass().getSimpleName()));
    private final PrivateAnimationTimer animationTimer = new PrivateAnimationTimer(this::handle);
@@ -30,7 +30,7 @@ public class JavaFXROS2VideoView extends ImageView
 
    private volatile boolean running = false;
 
-   public JavaFXROS2VideoView(int width, int height, boolean flipX, boolean flipY)
+   public QuadrupedJavaFXROS2VideoView(int width, int height, boolean flipX, boolean flipY)
    {
       this.flipX = flipX;
       this.flipY = flipY;

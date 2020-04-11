@@ -10,7 +10,7 @@ import us.ihmc.log.LogTools;
 import us.ihmc.pubsub.DomainFactory.PubSubImplementation;
 import us.ihmc.ros2.Ros2Node;
 
-public class JavaFXROS2VideoViewer extends Application
+public class QuadrupedJavaFXROS2VideoViewer extends Application
 {
    private static final int width = 1024;
    private static final int height = 544;
@@ -20,7 +20,7 @@ public class JavaFXROS2VideoViewer extends Application
    {
       Ros2Node ros2Node = ROS2Tools.createRos2Node(PubSubImplementation.FAST_RTPS, "video_viewer");
 
-      JavaFXROS2VideoView ros2VideoView = new JavaFXROS2VideoView(width, height, false, false);
+      QuadrupedJavaFXROS2VideoView ros2VideoView = new QuadrupedJavaFXROS2VideoView(width, height, false, false);
 
       StackPane stackPaneNode = new StackPane(ros2VideoView);
       stackPaneNode.setPrefSize(width, height);
