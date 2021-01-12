@@ -18,9 +18,26 @@ public class ValkyrieEndToEndStairsTest extends HumanoidEndToEndStairsTest
    }
 
    @Test
-   @Override
    public void testUpStairsSlow(TestInfo testInfo) throws Exception
    {
-      super.testUpStairsSlow(testInfo);
+      testStairs(testInfo, true, true, 0.6, 0.25, 0.0);
+   }
+
+   @Test
+   public void testDownStairsSlow(TestInfo testInfo) throws Exception
+   {
+      testStairs(testInfo, true, false, 0.9, 0.25, 0.0);
+   }
+
+   @Test
+   public void testUpStairs(TestInfo testInfo) throws Exception
+   {
+      testStairs(testInfo, false, true, 0.9, 0.25, 0.0);
+   }
+
+   @Test
+   public void testDownStairs(TestInfo testInfo) throws Exception
+   {
+      testStairs(testInfo, false, false, 1.0, 0.35, 0.0);
    }
 }
