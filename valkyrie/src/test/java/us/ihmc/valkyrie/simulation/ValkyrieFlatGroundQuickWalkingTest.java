@@ -8,8 +8,7 @@ import java.util.Objects;
 
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Test;
-
-import us.ihmc.avatar.AvatarFlatGroundFastWalkingTest;
+import us.ihmc.avatar.AvatarFlatGroundQuickWalkingTest;
 import us.ihmc.avatar.drcRobot.DRCRobotModel;
 import us.ihmc.avatar.drcRobot.RobotTarget;
 import us.ihmc.commonWalkingControlModules.configurations.SwingTrajectoryParameters;
@@ -27,7 +26,7 @@ import us.ihmc.valkyrie.parameters.ValkyrieCoPTrajectoryParameters;
 import us.ihmc.valkyrie.parameters.ValkyrieSwingTrajectoryParameters;
 import us.ihmc.valkyrie.parameters.ValkyrieWalkingControllerParameters;
 
-public class ValkyrieFlatGroundFastWalkingTest extends AvatarFlatGroundFastWalkingTest
+public class ValkyrieFlatGroundQuickWalkingTest extends AvatarFlatGroundQuickWalkingTest
 {
    private static final String FAST_WALKING_PARAMETERS_XML = "/us/ihmc/valkyrie/simulation/fast_walking_parameters.xml";
 
@@ -45,7 +44,7 @@ public class ValkyrieFlatGroundFastWalkingTest extends AvatarFlatGroundFastWalki
          @Override
          public InputStream getParameterOverwrites()
          {
-            InputStream resourceAsStream = ValkyrieFlatGroundFastWalkingTest.class.getResourceAsStream(FAST_WALKING_PARAMETERS_XML);
+            InputStream resourceAsStream = ValkyrieFlatGroundQuickWalkingTest.class.getResourceAsStream(FAST_WALKING_PARAMETERS_XML);
             Objects.requireNonNull(resourceAsStream);
             return resourceAsStream;
          }
