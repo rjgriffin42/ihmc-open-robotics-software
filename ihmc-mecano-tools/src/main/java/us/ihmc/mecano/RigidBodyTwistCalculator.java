@@ -1,4 +1,4 @@
-package us.ihmc.commons.robotics.screwTheory;
+package us.ihmc.mecano;
 
 import org.ejml.data.DMatrix;
 import org.ejml.data.DMatrixRMaj;

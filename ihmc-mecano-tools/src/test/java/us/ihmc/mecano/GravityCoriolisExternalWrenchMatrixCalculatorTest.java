@@ -1,4 +1,4 @@
-package us.ihmc.commons.robotics.screwTheory;
+package us.ihmc.mecano;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
