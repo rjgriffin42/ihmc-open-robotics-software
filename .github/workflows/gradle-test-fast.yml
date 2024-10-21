@@ -168,3 +168,53 @@ jobs:
     with:
       subproject: 'simulation-construction-set-tools'
       test-category: 'fast'
+
+  notify:
+    name: Force update on evergreen
+    runs-on: ubuntu-latest
+    needs: 
+      - atlas
+      - example-simulations
+      - ihmc-avatar-interfaces
+      - ihmc-common-walking-control-modules
+      - ihmc-communication
+      - ihmc-footstep-planning
+      - ihmc-graphics
+      - ihmc-high-level-behaviors
+      - ihmc-humanoid-behaviors
+      - ihmc-interfaces
+      - ihmc-java-toolkit
+      - ihmc-manipulation-planning
+      - ihmc-model-file-loader
+      - ihmc-parameter-estimation
+      - ihmc-parameter-optimization
+      - ihmc-parameter-tuner
+      - ihmc-path-planning
+      - ihmc-perception
+      - ihmc-robot-data-visualizer
+      - ihmc-robot-models
+      - ihmc-robotics-toolkit
+      - ihmc-ros-tools
+      - ihmc-sensor-processing
+      - ihmc-simulation-toolkit
+      - ihmc-state-estimation
+      - ihmc-system-identification
+      - ihmc-trajectory-optimization
+      - ihmc-whole-body-controller
+      - robot-environment-awareness
+      - robotiq-hand-drivers
+      - simulation-construction-set-tools
+    steps:
+      - name: Call API with curl
+        run: |
+          # Define the base URL
+          if [ "${{ contains(runner.labels, 'self-hosted') }}" == "true" ]; then
+            base_url="http://evergreen.ihmc.us"
+          else
+            base_url="https://evergreen.ihmc.us"
+          fi
+
+          echo "Calling force update - $base_url/api/update_workflow.php"
+          curl -L -X GET \
+                -H "REPONAME: ${{ github.event.repository.name }}" \
+                "$base_url/api/update_workflow.php"
